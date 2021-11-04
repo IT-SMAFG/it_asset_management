@@ -1,0 +1,112 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:K-{nomor_inventaris}-{#}",
+ "creation": "2021-10-22 11:06:56.471670",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "pengembali_section",
+  "pengembali",
+  "student",
+  "employee",
+  "student_name",
+  "employee_name",
+  "inventaris_section",
+  "nomor_inventaris",
+  "tanggal"
+ ],
+ "fields": [
+  {
+   "fieldname": "pengembali_section",
+   "fieldtype": "Section Break",
+   "label": "Pengembali"
+  },
+  {
+   "fieldname": "pengembali",
+   "fieldtype": "Select",
+   "label": "Pengembali",
+   "options": "Siswa\nKaryawan"
+  },
+  {
+   "depends_on": "eval:doc.pengembali=='Siswa'",
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "label": "ID Siswa",
+   "options": "Student"
+  },
+  {
+   "depends_on": "eval:doc.pengembali=='Karyawan'",
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "ID Karyawan",
+   "mandatory_depends_on": "eval:doc.pengembali=='Karyawan'",
+   "options": "Employee"
+  },
+  {
+   "depends_on": "eval:doc.pengembali=='Siswa'",
+   "fetch_from": "student.title",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "label": "Nama Siswa",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.pengembali=='Karyawan'",
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Nama Karyawan",
+   "read_only": 1
+  },
+  {
+   "fieldname": "nomor_inventaris",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Nomor Inventaris",
+   "options": "Inventaris",
+   "reqd": 1
+  },
+  {
+   "default": "Now",
+   "fieldname": "tanggal",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Tanggal",
+   "reqd": 1
+  },
+  {
+   "fieldname": "inventaris_section",
+   "fieldtype": "Section Break",
+   "label": "Inventaris"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-11-03 12:52:45.615829",
+ "modified_by": "Administrator",
+ "module": "IT Asset Management",
+ "name": "Pengembalian Inventaris",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
